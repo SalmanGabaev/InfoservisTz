@@ -1,0 +1,27 @@
+version: '3.9'
+services:
+  app:
+    container_name: 'test-app'
+    build:
+      context: ./
+    volumes:
+      - ./:/var/www
+    networks:
+      - app-network
+    depends_on:
+      - db
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    networks:
+      - app-network
+    environment:
+      MYSQL_ROOT_PASSWORD: 'Password_321'
+      MYSQL_DATABASE: 'database_test'
+      MYSQL_USER: 'test-user'
+      MYSQL_PASSWORD: 'Password_321'
+
+networks:
+  app-network:
+    driver: bridge
