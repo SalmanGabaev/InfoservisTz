@@ -33,7 +33,7 @@ class Database implements DatabaseInterface
         }
     }
 
-    public function skip()
+    public function skip(): string
     {
         return 'test';
     }
